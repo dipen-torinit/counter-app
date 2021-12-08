@@ -16,8 +16,16 @@ export default function App() {
       <TextInput
         placeholder="Enter the counter value"
         style={styles.counterInputText}
-        onChangeText={(text) => setCounterNumber(text)}
+        onChangeText={(text) => {
+          let num = parseInt(text);
+          if (num) {
+            setCounterNumber(num.toString());
+          } else {
+            setCounterNumber("");
+          }
+        }}
         defaultValue={counterNumber}
+        value={counterNumber}
         keyboardType="number-pad"
       />
 
