@@ -1,12 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import { CounterWithState } from "./src/components/CounterWithState";
+import { CounterWithRedux } from "./src/components/CounterWithRedux";
+import { store } from "./src/reduxstore/Store";
+import { Provider } from "react-redux";
+import { CounterWithHooks } from "./src/components/CounterWithHooks";
+import { Provider as CounterProvider } from "./src/context/CounterContext";
 
 export default function App() {
+  const [counterNumber, setCounterNumber] = useState("1");
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>Enter the counter value below</Text>
+      <TextInput
+        placeholder="Enter the counter value"
+        style={styles.counterInputText}
+        onChangeText={(text) => setCounterNumber(text)}
+        defaultValue={counterNumber}
+        keyboardType="number-pad"
+      />
+
+      <Text>Counter with use State</Text>
+      <CounterWithState counterNumber={parseInt(counterNumber)} />
+
+      <Text>Counter with redux</Text>
+      <Provider store={store}>
+        <CounterWithRedux counterNumber={parseInt(counterNumber)} />
+      </Provider>
+
+      <Text>Counter with Context</Text>
+      <CounterProvider>
+        <CounterWithHooks counterNumber={parseInt(counterNumber)} />
+      </CounterProvider>
     </View>
   );
 }
@@ -14,8 +40,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  counterInputText: {
+    paddingBottom: 20,
+    fontSize: 20,
   },
 });
