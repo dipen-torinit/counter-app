@@ -15,7 +15,7 @@ export function CounterWithHooks({ counterNumber }) {
             increaseCounter({ counterNumber });
           }}
         />
-        <Text> {state}</Text>
+        <Text> {state.counter}</Text>
         <Button
           title="-"
           onPress={() => {

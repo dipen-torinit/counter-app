@@ -3,9 +3,9 @@ import createDataContext from "./createDataContext";
 const counterContextReducer = (state, action) => {
   switch (action.type) {
     case "add":
-      return state + action.counterNumber;
+      return { ...state, counter: state.counter + action.counterNumber };
     case "subtract":
-      return state - action.counterNumber;
+      return { ...state, counter: state.counter - action.counterNumber };
     default:
       return state;
   }
@@ -23,8 +23,10 @@ const decreaseCounter = (dispatch) => {
   };
 };
 
+const initialState = { counter: 0 };
+
 export const { Context, Provider } = createDataContext(
   counterContextReducer,
   { increaseCounter: increaseCounter, decreaseCounter: decreaseCounter },
-  0
+  initialState
 );
