@@ -15,7 +15,7 @@ export function CounterWithHooks({ counterNumber }) {
             increaseCounter({ counterNumber });
           }}
         />
-        <Text> {state.counter}</Text>
+        <Text style={styles.counterText}> {state.counter}</Text>
         <Button
           title="-"
           onPress={() => {
@@ -32,5 +32,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  counterText: {
+    fontSize: 30,
   },
 });

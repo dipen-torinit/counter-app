@@ -13,7 +13,7 @@ export function CounterWithState({ counterNumber }) {
             setCounter(counter + counterNumber);
           }}
         />
-        <Text> {counter}</Text>
+        <Text style={styles.counterText}> {counter}</Text>
         <Button
           title="-"
           onPress={() => {
@@ -30,5 +30,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  counterText: {
+    fontSize: 30,
   },
 });

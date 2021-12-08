@@ -16,7 +16,7 @@ export function CounterWithRedux({ counterNumber }) {
             dispatch(counterActions.addition({ counterNumber }));
           }}
         />
-        <Text> {data}</Text>
+        <Text style={styles.counterText}> {data}</Text>
         <Button
           title="-"
           onPress={() => {
@@ -33,5 +33,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  counterText: {
+    fontSize: 30,
   },
 });

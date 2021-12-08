@@ -6,15 +6,19 @@ import { store } from "./src/reduxstore/Store";
 import { Provider } from "react-redux";
 import { CounterWithHooks } from "./src/components/CounterWithHooks";
 import { Provider as CounterProvider } from "./src/context/CounterContext";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function App() {
   const [counterNumber, setCounterNumber] = useState("1");
 
   return (
     <View style={styles.container}>
-      <Text>Enter the counter value below</Text>
+      <Text>Enter the counter(Increase/Decrease) value below</Text>
       <TextInput
-        placeholder="Enter the counter value"
+        selectionColor={"#59c3c3"}
+        autoFocus={true}
+        textAlign={"center"}
+        placeholder="Counter"
         style={styles.counterInputText}
         onChangeText={(text) => {
           let num = parseInt(text);
@@ -29,18 +33,30 @@ export default function App() {
         keyboardType="number-pad"
       />
 
-      <Text>Counter with use State</Text>
-      <CounterWithState counterNumber={parseInt(counterNumber)} />
+      <View style={styles.counterContainer}>
+        <Text>
+          Counter with <Text style={styles.counterText}>useState</Text>
+        </Text>
+        <CounterWithState counterNumber={parseInt(counterNumber)} />
+      </View>
 
-      <Text>Counter with redux</Text>
-      <Provider store={store}>
-        <CounterWithRedux counterNumber={parseInt(counterNumber)} />
-      </Provider>
+      <View style={styles.counterContainer}>
+        <Text>
+          Counter with <Text style={styles.counterText}>Redux</Text>
+        </Text>
+        <Provider store={store}>
+          <CounterWithRedux counterNumber={parseInt(counterNumber)} />
+        </Provider>
+      </View>
 
-      <Text>Counter with Context</Text>
-      <CounterProvider>
-        <CounterWithHooks counterNumber={parseInt(counterNumber)} />
-      </CounterProvider>
+      <View style={styles.counterContainer}>
+        <Text>
+          Counter with <Text style={styles.counterText}>Context</Text>
+        </Text>
+        <CounterProvider>
+          <CounterWithHooks counterNumber={parseInt(counterNumber)} />
+        </CounterProvider>
+      </View>
     </View>
   );
 }
@@ -48,12 +64,28 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#ffb6c1",
     alignItems: "center",
     justifyContent: "center",
   },
   counterInputText: {
-    paddingBottom: 20,
-    fontSize: 20,
+    paddingBottom: 10,
+    fontSize: 30,
+    backgroundColor: "#d7d8cc",
+    width: "40%",
+    alignItems: "center",
+    borderBottomColor: "#59c3c3",
+    borderBottomWidth: 2,
+  },
+  counterContainer: {
+    backgroundColor: "#59c3c3",
+    width: "90%",
+    margin: 10,
+    padding: 5,
+    alignItems: "center",
+  },
+  counterText: {
+    color: "#34568b",
+    fontWeight: "bold",
   },
 });
