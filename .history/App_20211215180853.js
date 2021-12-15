@@ -6,6 +6,7 @@ import { store } from "./src/reduxstore/Store";
 import { Provider } from "react-redux";
 import { CounterWithHooks } from "./src/components/CounterWithHooks";
 import { Provider as CounterProvider } from "./src/context/CounterContext";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function App() {
   const [counterNumber, setCounterNumber] = useState("1");
